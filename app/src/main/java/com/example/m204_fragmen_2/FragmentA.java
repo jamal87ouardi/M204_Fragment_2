@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +61,50 @@ public class FragmentA extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_a, container, false);
+        View v = inflater.inflate(R.layout.fragment_a, container, false);
+
+        EditText txtNom = v.findViewById(R.id.nom);
+        EditText txtPrix = v.findViewById(R.id.prix);
+        EditText txtImage = v.findViewById(R.id.image);
+        Switch swFPC = v.findViewById(R.id.FPC);
+        Button btnSend = v.findViewById(R.id.calc);
+
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String nom = txtNom.getText().toString();
+                Double prix = Double.valueOf(txtPrix.getText().toString());
+                String image = txtImage.getText().toString();
+                Boolean haveFPC = swFPC.isChecked();
+
+                Bundle bun = new Bundle();
+                bun.putString("n",nom);
+                bun.putDouble("p",prix);
+                bun.putString("url",image);
+                bun.putBoolean("fpc",haveFPC);
+
+                FragmentB fb = new FragmentB();
+                fb.setArguments(bun);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container,fb)
+                        .commit();
+
+
+            }
+        });
+
+
+
+
+        return v;
+
+
+
     }
 }

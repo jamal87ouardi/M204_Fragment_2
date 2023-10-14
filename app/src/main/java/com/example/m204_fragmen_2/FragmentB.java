@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +60,25 @@ public class FragmentB extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_b, container, false);
+        View v = inflater.inflate(R.layout.fragment_b, container, false);
+
+
+        Bundle bundle = getArguments();
+
+        TextView n = v.findViewById(R.id.nomB);
+
+        TextView p = v.findViewById(R.id.prixB);
+
+        TextView i = v.findViewById(R.id.imageB);
+
+        TextView fpc = v.findViewById(R.id.fpcB);
+
+        n.setText(bundle.getString("n"));
+        p.setText(String.valueOf(bundle.getDouble("p")));
+        i.setText(bundle.getString("url"));
+        fpc.setText(String.valueOf(bundle.getBoolean("fpc")));
+
+
+        return v;
     }
 }

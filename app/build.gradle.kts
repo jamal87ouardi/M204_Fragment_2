@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.m204_fragmen_2"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.m204_fragmen_2"
